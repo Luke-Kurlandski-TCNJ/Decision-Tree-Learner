@@ -1,0 +1,52 @@
+CSC470-01
+Project 3
+Due: April 21, 2021
+
+Title: Decision Tree Implementation, Experiments, and Analysis
+
+Teams: Team Assignments have been emailed. 
+
+Data Format Requirement: For this assignment you must make it so that your program can be called with a parameter specifying a file containing data in the same comma separated values (csv) format as the provided data file and learn from that data and produce as output the learned decision tree, which will be stored in the location specified by a second parameter to your program. 
+
+Example of calling your program from the command-line:
+
+% programName inputDataFileLocation outputFileLocation
+
+where programName is the name of your program, inputDataFileLocation is the location of the csv file containing the training data, and outputFileLocation is the location where the output will be written. 
+
+Example of data format required for the input file:
+
+See the example file named PlayTennisSampleDataFormat.txt
+
+Task 1: Implement the ID3 decision tree learning algorithm in the  programming language(s) of your choice from the following set: {Python, Java, C, C++}. There cannot be any software dependencies for your system that are not part of the standard installation on the TCNJ HPC system. Provide documentation and in particular, a README file explaining how to run the software from the command line. 
+
+Task 2: Verify that your implementation successfully produces the decision tree shown in class for the PlayTennis data with the 14 training examples provided in the class handout. 
+
+Task 3: Use your program to learn a decision tree for the four EnjoySport (not the PlayTennis task) training examples used in class. 
+
+Questions for task 3: What is the relationship between the learned decision tree and the version space that is learned from these same examples? Is the learned tree equivalent to one of the members of the version space? 
+
+Task 4: Create a new set of data for the PlayTennis task that is different from the 14 training examples provided in class. You should change the data and the classification values so that a new tree is learned from your dataset. Your dataset must be in the same csv format as the provided sample data file.
+
+Deliverables:
+
+D1. All source code for your project. 
+
+D2. The output trace your program produces for Task 2, i.e., the verification that your program works correctly for the example data provided in class for the PlayTennis task. 
+
+D3. The output your program produces for Task 3, i.e., the decision tree that your program learns for the four EnjoySport training examples. Also include a write-up containing answers to the questions for Task 3. 
+
+D4. Your new set of data that you built for the PlayTennis task and the tree that is learned from the new data. 
+
+D5. A writeup addressing each of the following (if there is nothing for a category then make an explicit remark ("Nothing" or "None"): 
+(1) anything positive you enjoyed or learned from this assignment, 
+(2) anything negative you didn't like about this assignment, 
+(3) any parts of this assignment you found easy, 
+(4) any parts of this assignment you found challenging or couldn't get working correctly, 
+(5) how your team functioned, including details such as what each team member contributed, how the team communicated with each other, and how team software development & design was accomplished, and
+(6) any other remarks you want to make. 
+
+D6. A main README file in plain text documenting all of your submission, explaining what’s what and where it’s located. The README file must also document all build instructions and command-line execution instructions for your software. 
+
+Please submit your complete bundled submission as a single .tar.gz file. 
+
