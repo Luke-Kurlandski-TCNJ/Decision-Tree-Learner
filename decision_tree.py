@@ -45,6 +45,41 @@ class Node:
 
 		self.successors.append((node, edge_label))
 
+	def __str__(self, node=None, incomming_edge_label="", tree="", prefix="", last=True):
+		"""
+		Return string representation of this node and its successors.
+
+		Arguments:
+			node : Node : the node or leaf of the tree at this depth
+				of recursion
+			incomming_edge_label : str : the edge label that produced
+				the node at this depth of recursion
+			tree : str : recursively built string representation
+			prefix : str : an increasingly long string of indentation
+			last : bool : indicates if a node is the last successor of 
+				its parent and thus should be printed slightly different
+
+		Returns:
+			tree : str : string representation of the tree
+		"""
+		
+		if node is None:
+			node = self
+			tree = "".join(['[', node.label, ']\n'])
+		else:
+			tree += "".join([
+				prefix, "|-{", incomming_edge_label, 
+				"}-[", node.label, ']\n'
+			])
+
+		prefix += "       " if last else "|      "
+
+		for i, child in enumerate(node.successors):
+			tree = self.__str__(child[0], child[1], tree, 
+									prefix, i == len(node.successors)-1)
+
+		return tree
+
 class DecisionTree:
 	"""
 	Decision tree learner.
@@ -123,7 +158,7 @@ class DecisionTree:
 			s : str : the string representation of this decsision tree
 		"""
 
-		pass
+		return str(self.root)
 
 	def save(self, path):
 		"""
@@ -133,4 +168,5 @@ class DecisionTree:
 			path : str : the .txt file to save this decision tree to
 		"""
 
-		pass
+		with open(path, 'w') as f:
+			f.write(str(self))
