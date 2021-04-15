@@ -81,6 +81,79 @@ class DecisionTree:
 			root : Node : a subcomponent of the tree learned
 		"""
 
+		# Check for all positive or negative examples
+		allPosOrNeg = 0
+		for ex in examples:
+			if ex[1] is True and \
+					allPosOrNeg is 1 or allPosOrNeg is 0:
+				allPosOrNeg = 1
+			else if ex[1] is False and \
+					allPosOrNeg is -1 or allPosOrNeg is 0:
+				allPosOrNeg = -1
+			else:
+				allPosOrNeg = 2
+
+		# Return root with value True or False if all examples
+		# are positive or negative respectively
+		if (allPosOrNeg == 1):
+			root = Node("Yes")
+			return root
+		else if (allPosOrNeg == -1):
+			root = Node("No")
+			return root
+		
+		# Check size of attributes for an empty array and return
+		# most common target attr value (if equal, returns "Yes")
+		if attrs.size == 0:
+			totPos = 0
+			totNeg = 0
+			for ex in examples:
+				if ex[2] is True:
+					totPos += 1
+				else:
+					totNeg += 1
+			if totPos >= totNeg:
+				root = Node("Yes")
+				return root
+			else:
+				root = Node("No")
+				return root
+
+		# Check every attribute for the attribute that "best" classifies
+		# examples using information gain
+		index = -1
+		highestVal = 0.0
+		for i in range(len(attrs)):
+
+			# TODO: Talk about this question:
+			# 		Instead of passing in attribute string, pass index?
+
+			val = information_gain(examples, attrs[i])
+			if val > highestVal:
+				highestVal = val
+				index = i
+
+		# Label the current node with the attribute that best classifies
+		# examples
+		root = Node(attrs[i])
+
+		# TODO: Work out the remainder of the algorithm
+		#
+		#	 	// The decision attr for Root is A.
+		# 		For each possible value v_i of A {
+		# 			Add a new tree branch below Root, corresponding to the test A=v_i;
+		# 			Let Examples_{v_i} be the subset of Examples that have value v_i for A;
+		# 			If (Examples_{v_i} is empty {
+		# 				Below the new branch add a leaf node with label = most common value of Target_Attr in Examples;
+		# 			} else {
+		# 				Below the new branch add the subtree ID3(Examples_{v_i}, Target_Attr, Attributes - {A});
+		# 			}
+		# 		}
+		#
+		# TODO: Work out the remainder of the algorithm
+
+		return root
+
 		pass
 
 	def information_gain(self, examples, attr):
