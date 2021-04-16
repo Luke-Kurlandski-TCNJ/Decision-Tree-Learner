@@ -4,6 +4,7 @@ A basic decision tree that uses the iterative dichotomiser 3 algorithm,
 
 Notes:
 	The variable examples if frequently referenced throughout this file.
+
 	Examples should be a set of the following form for some string attr
 		{
 			(
@@ -11,7 +12,22 @@ Notes:
 				bool
 			)
 		}
+
+	Alternatively, examples could be of the following form
+		[
+			(
+				{attr_1 : val_1, attr_2 : val_2},
+				bool
+			)
+		]
+
+	This does make it easier to do some things, but we have to chnage 
+		from set to list because dictionaries are not hashable. Will 
+		have to discuss with team.
 """
+
+
+import math
 
 from numpy import *
 
@@ -47,6 +63,41 @@ class Node:
 
 		self.successors.append((node, edge_label))
 
+	def __str__(self, node=None, incomming_edge_label="", tree="", prefix="", last=True):
+		"""
+		Return string representation of this node and its successors.
+
+		Arguments:
+			node : Node : the node or leaf of the tree at this depth
+				of recursion
+			incomming_edge_label : str : the edge label that produced
+				the node at this depth of recursion
+			tree : str : recursively built string representation
+			prefix : str : an increasingly long string of indentation
+			last : bool : indicates if a node is the last successor of 
+				its parent and thus should be printed slightly different
+
+		Returns:
+			tree : str : string representation of the tree
+		"""
+		
+		if node is None:
+			node = self
+			tree = "".join(['[', node.label, ']\n'])
+		else:
+			tree += "".join([
+				prefix, "|-{", incomming_edge_label, 
+				"}-[", node.label, ']\n'
+			])
+
+		prefix += "       " if last else "|      "
+
+		for i, child in enumerate(node.successors):
+			tree = self.__str__(child[0], child[1], tree, 
+									prefix, i == len(node.successors)-1)
+
+		return tree
+
 class DecisionTree:
 	"""
 	Decision tree learner.
@@ -55,7 +106,14 @@ class DecisionTree:
 		root : Node : the root of the decision tree
 	"""
 
-	def __init__(self, examples, target_attr, attrs):
+	def __init__(self):
+		"""
+		Construct an empty decision tree.
+		"""
+
+		self.root = None
+
+	def fit(self, examples, target_attr, attrs):
 		"""
 		Fit the training data to learn the decision tree.
 
@@ -66,8 +124,11 @@ class DecisionTree:
 				the decision tree
 		"""
 
-		self.root = \
-			self.iterative_dichotomiser_3(examples, target_attr, attrs)
+		self.root = self.iterative_dichotomiser_3(
+			examples, 
+			target_attr, 
+			attrs
+		)
 
 	def iterative_dichotomiser_3(self, examples, target_attr, attrs):
 		"""
@@ -178,25 +239,45 @@ class DecisionTree:
 		Arguments:
 			attr : str : the attribute to compute information gain for 
 				relative to some set of training examples
-			examples : {([str,], bool)} : set of examples to compute
-				the information gain for
+			examples : [({attr : val}, bool)] : list of examples to 
+				compute the information gain for
 
 		Returns:
 			gain : float : the information gain computed
 		"""
 
-		pass
+		gain = self.entropy(examples)
+
+		possible_values_for_attr = {e[0][attr] for e in examples}
+
+		for v in possible_values_for_attr:
+			examples_v = [e for e in examples if e[0][attr] == v]
+			gain -= len(examples_v) / len(examples) * self.entropy(examples_v)
+
+		return gain
 
 	def entropy(self, examples):
 		"""
 		Compute the entropy of a set.
 
 		Arguments:
-			examples : {([str,], bool)} : set of examples to compute the
-				entropy for
+			examples : [({attr_i, val_i}, bool)] : set of examples to 
+				compute the entropy for
+
+		Returns:
+			entropy : float : the entropy of the set
 		"""
 
-		pass
+		entropy = 0
+
+		possible_values_for_target_concept = {e[1] for e in examples}
+
+		for v in possible_values_for_target_concept:
+			examples_v = [e for e in examples if e[1] == v]
+			p_v = len(examples_v) / len(examples)
+			entropy -= p_v * math.log(p_v, 2)
+
+		return entropy
 
 	def __str__(self):
 		"""
@@ -211,7 +292,7 @@ class DecisionTree:
 			s : str : the string representation of this decsision tree
 		"""
 
-		pass
+		return str(self.root)
 
 	def save(self, path):
 		"""
@@ -221,4 +302,5 @@ class DecisionTree:
 			path : str : the .txt file to save this decision tree to
 		"""
 
-		pass
+		with open(path, 'w') as f:
+			f.write(str(self))
