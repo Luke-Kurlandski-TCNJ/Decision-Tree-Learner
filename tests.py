@@ -5,6 +5,7 @@ Run from command line using
 	> python tests.py
 """
 
+
 import math
 import unittest
 
@@ -115,8 +116,8 @@ class DecisionTreeTest(unittest.TestCase):
 
 	def test_save(self):
 
-		dt = DecisionTree()
-		
+		dt = DecisionTree()	
+    
 		dt.save("test_path.txt")
 
 class mainTest(unittest.TestCase):

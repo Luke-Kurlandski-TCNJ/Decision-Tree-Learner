@@ -26,7 +26,10 @@ Notes:
 		have to discuss with team.
 """
 
+
 import math
+
+from numpy import *
 
 class Node:
 	"""
@@ -141,7 +144,93 @@ class DecisionTree:
 			root : Node : a subcomponent of the tree learned
 		"""
 
-		pass
+		# Check for all positive or negative examples
+		allPosOrNeg = 0
+		for ex in examples:
+			if ex[1] is True and \
+					allPosOrNeg is 1 or allPosOrNeg is 0:
+				allPosOrNeg = 1
+			else if ex[1] is False and \
+					allPosOrNeg is -1 or allPosOrNeg is 0:
+				allPosOrNeg = -1
+			else:
+				allPosOrNeg = 2
+
+		# Return root with value True or False if all examples
+		# are positive or negative respectively
+		if (allPosOrNeg == 1):
+			root = Node("Yes")
+			return root
+		else if (allPosOrNeg == -1):
+			root = Node("No")
+			return root
+		
+		# Check size of attributes for an empty array and return
+		# most common target attr value (if equal, returns "Yes")
+		totPos = 0
+		totNeg = 0
+		if attrs.size == 0:
+			for ex in examples:
+				if ex[1] is True:
+					totPos += 1
+				else:
+					totNeg += 1
+			if totPos >= totNeg:
+				root = Node("Yes")
+				return root
+			else:
+				root = Node("No")
+				return root
+
+		# Check every attribute for the attribute that "best" classifies
+		# examples using information gain
+		index = -1
+		highestVal = 0.0
+		for i in range(len(attrs)):
+			val = information_gain(examples, i)
+			if val > highestVal:
+				highestVal = val
+				index = i
+
+		# Label the current node with the attribute that best classifies
+		# examples
+		root = Node(attrs[index])
+
+		# Determine all v_i for the successors
+		v_i = []
+		for ex in examples:
+			if v_i.size == 0:
+				v_i.insert(ex[index])
+			else:
+				if ex[index] in v_i:
+					continue
+				else:
+					v_i.insert(ex[index])
+
+		# For each value in v_i create successor nodes
+		for i in v_i:
+			subset = []
+			for ex in examples:
+				if i == ex[index]:
+					subset.insert(ex)
+			# If the subset is empty, the successor will be Yes or No based on
+			# the total positive and negatives in examples as well as the leaf
+			if subset.size == 0:
+				if totPos >= totNeg:
+					newNode = Node("Yes")
+					root.add_successor(newNode, i)
+				else:
+					newNode = Node("No")
+					root.add_successor(newNode, i)
+			# Copy the arrays and remove this attribute from the arrays
+			# to prevent subsequent duplicates in recursive ID3 calls
+			else:
+				attrCopy = attrs.view()
+				del attrCopy[index]
+				newNode = iterative_dichotomiser_3(subset, target_attr, attrs)
+				root.add_successor(newNode, i)
+
+		return root
 
 	def information_gain(self, examples, attr):
 		"""
