@@ -29,8 +29,6 @@ Notes:
 
 import math
 
-from numpy import *
-
 class Node:
 	"""
 	Node component of a basic tree.
@@ -150,7 +148,7 @@ class DecisionTree:
 			if ex[1] is True and \
 					allPosOrNeg is 1 or allPosOrNeg is 0:
 				allPosOrNeg = 1
-			else if ex[1] is False and \
+			elif ex[1] is False and \
 					allPosOrNeg is -1 or allPosOrNeg is 0:
 				allPosOrNeg = -1
 			else:
@@ -161,7 +159,7 @@ class DecisionTree:
 		if (allPosOrNeg == 1):
 			root = Node("Yes")
 			return root
-		else if (allPosOrNeg == -1):
+		elif (allPosOrNeg == -1):
 			root = Node("No")
 			return root
 		
@@ -225,7 +223,7 @@ class DecisionTree:
 			# Copy the arrays and remove this attribute from the arrays
 			# to prevent subsequent duplicates in recursive ID3 calls
 			else:
-				attrCopy = attrs.view()
+				attrCopy = attrs.copy()
 				del attrCopy[index]
 				newNode = iterative_dichotomiser_3(subset, target_attr, attrs)
 				root.add_successor(newNode, i)
