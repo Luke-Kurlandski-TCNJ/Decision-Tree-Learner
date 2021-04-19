@@ -9,6 +9,7 @@ Run the program using this file
 """
 
 import csv
+from decision_tree import DecisionTree
 
 def process_examples_files(path, target_attr):
 	"""
@@ -31,6 +32,7 @@ def process_examples_files(path, target_attr):
 		reader = csv.DictReader(csvfile)
 		for row in reader:
 			r = dict(row)
+			r.pop("ExampleID")
 			target_val = r.pop(target_attr)
 			target_val = True if target_val.upper() == "YES" else False
 			examples.append((r, target_val))
@@ -38,6 +40,15 @@ def process_examples_files(path, target_attr):
 	return examples
 
 def main():
+	examples = process_examples_files(
+			'PlayTennisSampleDataFormat.csv', 
+			'PlayTennis'
+		)
+	attrs = list(examples[0][0].keys())
+
+	dt = DecisionTree()
+	dt.fit(examples, attrs)
+	print(str(dt))
 	pass
 
 if __name__ == "__main__":

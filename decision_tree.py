@@ -111,12 +111,13 @@ class DecisionTree:
 
 		self.root = None
 
-	def fit(self, examples, target_attr, attrs):
+	def fit(self, examples, attrs):
 		"""
 		Fit the training data to learn the decision tree.
 
 		Arugments:
-			examples : {([str,], bool)} : set of examples to learn from
+			examples : [({attr : val}, bool)] : list of examples to 
+				compute the information gain for
 			target_attr : str : attribute whose value is to be predicted
 			attrs : [str,] : list of attributes that may be tested by
 				the decision tree
@@ -124,16 +125,16 @@ class DecisionTree:
 
 		self.root = self.iterative_dichotomiser_3(
 			examples, 
-			target_attr, 
 			attrs
 		)
 
-	def iterative_dichotomiser_3(self, examples, target_attr, attrs):
+	def iterative_dichotomiser_3(self, examples, attrs):
 		"""
 		Learn the decision tree using the ID3 algorithm.
 
 		Arugments:
-			examples : {([str,], bool)} : set of examples to learn from
+			examples : [({attr : val}, bool)] : list of examples to 
+				compute the information gain for
 			target_attr : str : attribute whose value is to be predicted
 			attrs : [str,] : list of attributes that may be tested by
 				the decision tree
@@ -145,11 +146,9 @@ class DecisionTree:
 		# Check for all positive or negative examples
 		allPosOrNeg = 0
 		for ex in examples:
-			if ex[1] is True and \
-					allPosOrNeg is 1 or allPosOrNeg is 0:
+			if ex[1] and (allPosOrNeg == 1 or allPosOrNeg == 0):
 				allPosOrNeg = 1
-			elif ex[1] is False and \
-					allPosOrNeg is -1 or allPosOrNeg is 0:
+			elif not ex[1] and (allPosOrNeg == -1 or allPosOrNeg == 0):
 				allPosOrNeg = -1
 			else:
 				allPosOrNeg = 2
@@ -167,7 +166,7 @@ class DecisionTree:
 		# most common target attr value (if equal, returns "Yes")
 		totPos = 0
 		totNeg = 0
-		if attrs.size == 0:
+		if len(attrs) == 0:
 			for ex in examples:
 				if ex[1] is True:
 					totPos += 1
@@ -182,38 +181,30 @@ class DecisionTree:
 
 		# Check every attribute for the attribute that "best" classifies
 		# examples using information gain
-		index = -1
-		highestVal = 0.0
-		for i in range(len(attrs)):
-			val = information_gain(examples, i)
+		bestFitAttr = ""
+		highestVal = -1
+		for attr in attrs:
+			val = self.information_gain(examples, attr)
 			if val > highestVal:
 				highestVal = val
-				index = i
+				bestFitAttr = attr
 
 		# Label the current node with the attribute that best classifies
 		# examples
-		root = Node(attrs[index])
+		root = Node(bestFitAttr)
 
 		# Determine all v_i for the successors
-		v_i = []
-		for ex in examples:
-			if v_i.size == 0:
-				v_i.insert(ex[index])
-			else:
-				if ex[index] in v_i:
-					continue
-				else:
-					v_i.insert(ex[index])
+		v_i = {e[0][bestFitAttr] for e in examples}
 
 		# For each value in v_i create successor nodes
 		for i in v_i:
 			subset = []
 			for ex in examples:
-				if i == ex[index]:
-					subset.insert(ex)
+				if i == ex[0][bestFitAttr]:
+					subset.append(ex)
 			# If the subset is empty, the successor will be Yes or No based on
 			# the total positive and negatives in examples as well as the leaf
-			if subset.size == 0:
+			if len(subset) == 0:
 				if totPos >= totNeg:
 					newNode = Node("Yes")
 					root.add_successor(newNode, i)
@@ -224,8 +215,8 @@ class DecisionTree:
 			# to prevent subsequent duplicates in recursive ID3 calls
 			else:
 				attrCopy = attrs.copy()
-				del attrCopy[index]
-				newNode = iterative_dichotomiser_3(subset, target_attr, attrs)
+				attrCopy.remove(bestFitAttr)
+				newNode = self.iterative_dichotomiser_3(subset, attrs)
 				root.add_successor(newNode, i)
 
 		return root
