@@ -1,3 +1,5 @@
+#Authors: Lana Abdelmohsen, Luke Kurlandski, Gordon Petry, Jason Swick
+
 """
 A basic decision tree that uses the iterative dichotomiser 3 algorithm,
 	and entropy.
