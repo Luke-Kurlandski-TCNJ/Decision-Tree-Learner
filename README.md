@@ -1,7 +1,13 @@
 # Decision-Tree-Learner
+# CSC 426 Project 3
+# Authors: Lana Abdelmohsen, Luke Kurlandski, Gordon Petry, Jason Swick
+# Filename: README.md
+# Description: Includes instructions on how to run the code and an explanation of the output format
+This repository contains a basic descision tree learning algorithm.
+## Output Format
+The format of the output is a sideways tree.
 
-A basic descision tree learning algorithm.
-
+## Instructions for the HPC 
 Comptibile with python 3.6.0. 
 
 To use on TCNJ's hpc:
