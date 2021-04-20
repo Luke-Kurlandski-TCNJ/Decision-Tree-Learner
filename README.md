@@ -7,6 +7,8 @@ This repository contains a basic descision tree learning algorithm.
 ## Output Format
 The format of the output is a sideways tree.
 
+## High Level Description of code
+
 ## Instructions for the HPC 
 Comptibile with python 3.6.0. 
 
