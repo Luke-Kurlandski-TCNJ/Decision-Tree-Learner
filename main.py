@@ -1,3 +1,4 @@
+#Authors: Lana Abdelmohsen, Luke Kurlandski, Gordon Petry, Jason Swick
 """
 Run the program using this file
 
