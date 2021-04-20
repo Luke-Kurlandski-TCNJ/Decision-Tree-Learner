@@ -1,0 +1,15 @@
+ExampleID,Outlook,Temperature,Humidity,Wind,PlayTennis
+1,Sunny,Mild,High,Weak,Yes
+2,Sunny,Hot,High,Strong,No
+3,Overcast,Cool,High,Weak,No
+4,Rain,Cool,Normal,Strong,Yes
+5,Rain,Cool,High,Weak,Yes
+6,Rain,Mild,High,Weak,Yes
+7,Overcast,Mild,Normal,Strong,No
+8,Sunny,Mild,Normal,Strong,No
+9,Sunny,Cool,Normal,Weak,Yes
+10,Rain,Mild,Normal,Weak,Yes
+11,Sunny,Cool,Normal,Strong,Yes
+12,Overcast,Mild,High,Weak,No
+13,Overcast,Hot,Normal,Weak,Yes
+14,Rain,Mild,High,Strong,No

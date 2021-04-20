@@ -1,0 +1,33 @@
+[Humidity]
+       |-{High}-[No]
+
+[Humidity]
+       |-{High}-[No]
+       |-{Normal}-[Yes]
+
+[Outlook]
+       |-{Sunny}-[Humidity]
+              |-{High}-[No]
+              |-{Normal}-[Yes]
+
+[Outlook]
+       |-{Sunny}-[Humidity]
+       |      |-{High}-[No]
+       |      |-{Normal}-[Yes]
+       |-{Overcast}-[Yes]
+
+[Wind]
+       |-{Weak}-[Yes]
+
+[Wind]
+       |-{Weak}-[Yes]
+       |-{Strong}-[No]
+
+[Outlook]
+       |-{Sunny}-[Humidity]
+       |      |-{High}-[No]
+       |      |-{Normal}-[Yes]
+       |-{Overcast}-[Yes]
+       |-{Rain}-[Wind]
+              |-{Weak}-[Yes]
+              |-{Strong}-[No]
