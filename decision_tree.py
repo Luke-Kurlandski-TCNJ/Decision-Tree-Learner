@@ -23,9 +23,8 @@ Notes:
 			)
 		]
 
-	This does make it easier to do some things, but we have to chnage 
-		from set to list because dictionaries are not hashable. Will 
-		have to discuss with team.
+	This does make it easier to do some things, but we have to change 
+		from set to list because dictionaries are not hashable. 
 """
 
 
