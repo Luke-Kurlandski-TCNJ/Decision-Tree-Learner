@@ -1,3 +1,6 @@
+#Authors: Lana Abdelmohsen, Luke Kurlandski, Gordon Petry, Jason Swick
+
+
 """
 Test all aspects of the application.
 
