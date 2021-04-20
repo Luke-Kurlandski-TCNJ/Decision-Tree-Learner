@@ -4,11 +4,11 @@
 # Filename: README.md
 # Description: Includes instructions on how to run the code and an explanation of the output format
 This repository contains a basic descision tree learning algorithm.
-## Output Format
+## Output Format **TODO**
 The format of the output is a sideways tree.
 
 ## High Level Description of code
-
+**TODO**
 ## Instructions for the HPC 
 Comptibile with python 3.6.0. 
 
