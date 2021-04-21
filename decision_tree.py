@@ -7,15 +7,7 @@ A basic decision tree that uses the iterative dichotomiser 3 algorithm,
 Notes:
 	The variable examples if frequently referenced throughout this file.
 
-	Examples should be a set of the following form for some string attr
-		{
-			(
-				[attr_1, attr_2, ...., attr_1], 
-				bool
-			)
-		}
-
-	Alternatively, examples could be of the following form
+	Examples should be a list of the following form for some string attr
 		[
 			(
 				{attr_1 : val_1, attr_2 : val_2},
