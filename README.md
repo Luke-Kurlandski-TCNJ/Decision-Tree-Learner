@@ -1,10 +1,8 @@
 # Decision-Tree-Learner
 # CSC 426 Project 3
 # Authors: Lana Abdelmohsen, Luke Kurlandski, Gordon Petry, Jason Swick
-# Description: Includes instructions on how to run the code and an explanation of the output format
-This repository contains a basic descision tree learning algorithm.
-## Output Format **TODO**
-The format of the output is a sideways tree.
+# Description: 
+A basic descision tree learning algorithm, capable of learning a tree from multiple data sources and producing a visual output.
 
 ## High Level Description of code
 1. main.py 
@@ -23,7 +21,6 @@ The format of the output is a sideways tree.
 6. other .txt, .csv
 - other files such as the project description etc.
 
-
 ## Instructions for the HPC 
 1. Comptibile with python 3.6.0. 
 
@@ -34,5 +31,8 @@ The format of the output is a sideways tree.
 - > python3 main.py input_path output_path
 
 4. where
-- input_path : name of a .csv file (or .txt, if formatted correctly) that contains training data (last column should be value of target attribute)
-- output_path : name of a .txt file where the decision tree will be written to as it is built
+- input_path : name of a .csv file that contains training data 
+  - may also be .txt file type, but must contain comma separted values
+  - last column should be value of target attribute
+- output_path : name of a .txt file to write the learned decision tree
+  - NOTE: the decision tree is printed sideways, not vertically!
