@@ -7,13 +7,24 @@ A basic descision tree learning algorithm, capable of learning a tree from multi
 # Content Guide
 1. main.py 
 - primarily for executing the code
-- also contains a function to process input files
+- contains a function to process input files
+  - reads the csv/txt file, learns the attributes from the first row, the target concept from the final column, ignores column named "ExampleID"
+  - processes each successive row into a tuple, where the first element is a dict of attribute : value pairs and the second element is the boolean target concept
 2. decision_tree.py 
-- contains the DecisionTree class, which contains the ID3 algorithm, information gain, and entropy functions
-- contains the Node class, which serves as the backbone for the DecisionTree class
+- contains the DecisionTree class, which
+   - contains ID3 algorithm
+   - computes information gain
+   - computes entropy of a set
+   - converts itself to a string representation
+   - prints itself to a file
+- contains the Node class, which
+   - is a simple, non-optimized n-tree with labeled edges
+   - serves as the backbone for the DecisionTree class
+   - can convert itself into a string representation
 3. tests.py
 - contains unit tests for information gain and entropy
 - tests for converting Node into a string
+- has not been updated after the team merge, ie, tests will not pass
 4. D2_output.txt
 - contains string representation of the decision tree as it is being built for the PlayTennis task
 5. D3_output.txt
