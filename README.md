@@ -1,7 +1,6 @@
 # Decision-Tree-Learner
 # CSC 426 Project 3
 # Authors: Lana Abdelmohsen, Luke Kurlandski, Gordon Petry, Jason Swick
-# Filename: README.md
 # Description: Includes instructions on how to run the code and an explanation of the output format
 This repository contains a basic descision tree learning algorithm.
 ## Output Format **TODO**
