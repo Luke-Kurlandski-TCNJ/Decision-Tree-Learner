@@ -21,10 +21,10 @@ A basic descision tree learning algorithm, capable of learning a tree from multi
 6. other .txt, .csv
 - other files such as the project description etc.
 
-## Instructions for the HPC 
+## Instructions
 1. Comptibile with python 3.6.0. 
 
-2. To use on TCNJ's hpc:
+2. TCNJ HPC specific instructions:
 - > module add python/3.6.0
 
 3. To run the program:
