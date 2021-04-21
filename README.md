@@ -21,14 +21,14 @@ A basic descision tree learning algorithm, capable of learning a tree from multi
 6. other .txt, .csv
 - other files such as the project description etc.
 # Instructions for Use
-1. Comptibile with python 3.6.0. 
+1. Compatibile with python 3.6.0. 
 2. TCNJ HPC specific instructions:
 - > module add python/3.6.0
 3. To run the program:
 - > python3 main.py input_path output_path
 4. where
 - input_path : name of a .csv file that contains training data 
-  - may also be .txt file type, but must contain comma separted values
+  - may also be .txt file type, but must contain comma separated values
   - last column should be value of target attribute
 - output_path : name of a .txt file to write the learned decision tree
   - NOTE: the decision tree is printed sideways, not vertically!
