@@ -35,5 +35,5 @@ The format of the output is a sideways tree.
 - > python3 main.py input_path output_path
 
 4. where
-- input_path : name of a .csv file that contains training data (last column should be value of target attribute)
+- input_path : name of a .csv file (or .txt, if formatted correctly) that contains training data (last column should be value of target attribute)
 - output_path : name of a .txt file where the decision tree will be written to as it is built
