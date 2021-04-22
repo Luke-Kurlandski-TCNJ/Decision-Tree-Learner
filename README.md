@@ -21,23 +21,19 @@ A basic descision tree learning algorithm, capable of learning a tree from multi
    - is a simple, non-optimized n-tree with labeled edges
    - serves as the backbone for the DecisionTree class
    - can convert itself into a string representation
-3. tests.py
-- contains unit tests for information gain and entropy
-- tests for converting Node into a string
-- has not been updated after the team merge, ie, tests will not pass
-4. D2_output.txt
+3. D2_output.txt
 - contains string representation of the decision tree as it is being built for the PlayTennis task
-5. D3_output.txt
+4. D3_output.txt
 - contains string representation of the decision tree as it is being built for the EnjoySport task
-6. D3.pdf
+5. D3.pdf
 - a repsonse to the version space question
-7. D4_input.csv
+6. D4_input.csv
 - contains our own input data for PlayTennis task for task 4
-8. D4_output.txt
+7. D4_output.txt
 - contains our own output data for PlayTennis task for task 4
-9. D5.pdf
+8. D5.pdf
 - group deliverable
-10. other .txt, .csv
+9. other .txt, .csv
 - other files such as the project description etc.
 # Instructions for Use
 1. Compatibile with python 3.6.0. 
