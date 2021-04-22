@@ -4,7 +4,7 @@
 Lana Abdelmohsen, Luke Kurlandski, Gordon Petry, Jason Swick
 # Description: 
 A basic descision tree learning algorithm, capable of learning a tree from multiple data sources and producing a visual output.
-# Content Guide
+# Content Guide and Description of Code
 1. main.py 
 - primarily for executing the code
 - contains a function to process input files
